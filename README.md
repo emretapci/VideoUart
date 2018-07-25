@@ -5,34 +5,45 @@ no hardware flow control.
 To configure;
 
 1. Install Ubuntu Mate.
+
 2. Type "su" and login as "root".
+
 3. Type "adduser uart" to add a new user.
+
 4. Type "usermod -aG sudo uart"
-4. Copy "uartvideo.py" and "init_dev.sh" files to "/home/uart"
-5. Type "visudo -f /etc/sudoers"
-6. At the end of "/etc/sudoers" file, add the following lines:
+
+5. Copy "uartvideo.py" and "init_dev.sh" files to "/home/uart"
+
+6. Type "visudo -f /etc/sudoers"
+
+7. At the end of "/etc/sudoers" file, add the following lines:
 		%sudo ALL= NOPASSWD: /home/uart/init_dev.sh
 		%sudo ALL= NOPASSWD: /bin/chmod
-7. Open menu: "System > Startup Applications"
-8. Click "Add" and type "UART video player" as Name,
+
+8. Open menu: "System > Startup Applications"
+
+9. Click "Add" and type "UART video player" as Name,
    "python /home/uart/uartvideo.py" as Command.
-9.Type "chmod 777 /home/uart/uart_dev.sh"
-10.Edit "/etc/lightdm/lightdm.conf" file as follows:
+
+10. Type "chmod 777 /home/uart/uart_dev.sh"
+
+11. Edit "/etc/lightdm/lightdm.conf" file as follows:
 		[SeatDefaults]
 		autologin-guest=false
 		autologin-user=uart
 		autologin-user-timeout=0
 		autologin-session=lightdm-autologin
-11.Restart banana pro.
 
-Commands expected from UART are:
+12. Restart banana pro.
 
-P<file_name>
-	play <file_name> video
-	<file_name> is a null-terminated string, it ends with a <null> (0) character.
-	there's no space between "P" and <file_name>
-	e.g. Pintroduction.avi<null> : Starts the movie "introduction.avi" in the current directory.
-	     Pvideos\setup.avi<null> : Starts the movie "setup.avi" in the <current directory>/videos directory.
+### Commands expected from UART are: ###
 
-S
-	stop playback
+P<file_name><br>
+play <file_name> video<br>
+<file_name> is a null-terminated string, it ends with a <null> (0) character.<br>
+there's no space between "P" and <file_name><br>
+e.g. Pintroduction.avi<null> : Starts the movie "introduction.avi" in the current directory.<br>
+Pvideos\setup.avi<null> : Starts the movie "setup.avi" in the <current directory>/videos directory.<br><br>
+
+S<br>
+stop playback
